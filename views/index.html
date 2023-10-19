@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Rest de presidentes y operadores políticos de Argentina</title>
+  </head>
+  <body>
+    <div>
+      <h1>API Rest de presidentes y operadores políticos de Argentina</h1>
+    </div>
+    <p>
+      Para ver todos los presidentes hay que hacer un GET a
+      http://localhost:3000/presidents
+    </p>
+    <p>
+      Para traer un presidente por ID, hay que hacer un GET a
+      http://localhost:3000/presidents pasándole como parámetro su ID
+    </p>
+    <p>
+      Para ver todos los presidentes filtrados por edad y traer a los mayores de
+      esa edad en cuestión, hay que hacer un GET a
+      http://localhost:3000/presidents/age , pasándole como query la edad
+    </p>
+    <p>
+      Para ver todos los presidentes filtrados por ideología, hay que hacer un
+      GET a http://localhost:3000/presidents/ideology pasándole como query la
+      ideología. "Centrista", "Derecha" o "Izquierda"
+    </p>
+    <p>
+      Para ver todos los presidentes de forma paginada hay que hacer un GET a
+      http://localhost:3000/presidents/paginated/ indicandole por query el
+      número de página(paginated) y la cantidad de presidentes(limit) a traer
+      por cada página
+    </p>
+    <p>
+      Para traer a los presidentes ordenados por su edad de manera ascendente,
+      hay que hacer un GET a http://localhost:3000/presidents/age/order
+    </p>
+    <p>
+      Para crear un presidente, es necesario hacer un POST a
+      http://localhost:3000/presidents indicando "name", "age", "description",
+      "ideology", "status", donde estatus es si está vivo (como true) o muerto
+      (como false).
+    </p>
+    <p>
+      Para eliminar un presidente, es necesario hacer un DELETE
+      http://localhost:3000/presidents pasándole como parámetro el ID
+    </p>
+    <p>
+      Para editar un presidente, es necesario hacer un PUT a
+      http://localhost:3000/presidents pasándole como parámetro el ID
+    </p>
+
+    <h2>Crear una cuenta</h2>
+    <p>
+      Para crease una cuenta, hay que hacer un POST indicando el "name", "email"
+      y "password" a http://localhost:3000/fixers. Para obtener un token y poder
+      hacer las solicitudes de presidente, hay que hacer un POST a
+      http://localhost:3000/auth con el usuario y la contraseña
+    </p>
+
+    <footer style="background: red; color: white">
+      <p>Tomás Cahue - 2023</p>
+    </footer>
+  </body>
+</html>
