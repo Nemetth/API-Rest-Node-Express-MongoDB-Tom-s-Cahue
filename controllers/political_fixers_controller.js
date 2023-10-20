@@ -1,14 +1,32 @@
 import Fixer from "../models/political_fixers_models.js";
 import bcrypt from "bcrypt";
+import Joi from "joi";
 
 //Crear un operador
 
+const schema = Joi.object({
+  name: Joi.string().alphanum().min(3).max(20).required(),
+  email: Joi.string()
+    .email({
+      minDomainSegments: 2,
+      tlds: { allow: ["com", "edu", "ar", "org"] },
+    })
+    .required(),
+  password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{6,20}$")).required(),
+});
+
 async function createFixer(req, res) {
   try {
+    const { error, value } = schema.validate(req.body);
+
+    if (error) {
+      return res.status(400).json({ error: error.details[0].message });
+    }
+
     const fixer = new Fixer({
-      name: req.body.name,
-      email: req.body.email,
-      password: bcrypt.hashSync(req.body.password, 10),
+      name: value.name,
+      email: value.email,
+      password: bcrypt.hashSync(value.password, 10),
     });
 
     const createdFixer = await fixer.save();
